@@ -8,6 +8,8 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    //id 'application'
+    id 'org.springframework.boot' version '2.0.5.RELEASE'
 }
 
 dependencies {
@@ -21,13 +23,25 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     compile "joda-time:joda-time:2.2"
+    
+    //This dependency is for implementing springframework
+    implementation 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.0.5.RELEASE'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.0.5.RELEASE'
 }
 repositories {
     jcenter()
 }
-
-jar {
+bootJar {
 	baseName = 'testGradle'
+	version = '0.1.0'
+    mainClassName = 'hello.App'
+}
+
+//mainClassName = 'hello.App'
+/*
+jar {
+	baseName = 'testGradle-simpleJar'
 	version = '0.1.0'
 	manifest {
 		attributes(
@@ -36,4 +50,5 @@ jar {
 		)
 	}
 	from configurations.compile.collect { entry -> zipTree(entry) }
-}
+}*/
+
